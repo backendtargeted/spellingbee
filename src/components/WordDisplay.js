@@ -3,8 +3,17 @@ import React from 'react';
 
 const WordDisplay = ({ word, userSpelling, showWord, onPronounce }) => {
   
-  // Basic rendering logic, will be enhanced later with letter-by-letter feedback
-  const display = showWord ? word.word : '_ '.repeat(word.word.length).trim();
+  // Handle spaces in words
+  const renderDisplayWord = () => {
+    if (showWord) {
+      return word.word;
+    }
+    return word.word.split('').map(char => 
+      char === ' ' ? '\u00A0' : '_'
+    ).join(' ');
+  };
+
+  const display = renderDisplayWord();
   
   return (
     <div className="word-display">
@@ -20,8 +29,8 @@ const WordDisplay = ({ word, userSpelling, showWord, onPronounce }) => {
         ))}
       </div>
 
-      <button onClick={onPronounce} className="pronounce-btn">
-        🔊 Listen
+      <button onClick={onPronounce} className="listen-button">
+        <span role="img" aria-label="Listen">🔊</span> Listen
       </button>
     </div>
   );

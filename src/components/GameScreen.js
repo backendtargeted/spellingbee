@@ -17,6 +17,8 @@ const GameScreen = ({ wordList, gameState, onGameStateUpdate }) => {
   const [scoreBreakdown, setScoreBreakdown] = useState(null);
   const [showScore, setShowScore] = useState(false);
   const [showFeedback, setShowFeedback] = useState(null);
+  const [scoreUpdated, setScoreUpdated] = useState(false);
+  const [streakUpdated, setStreakUpdated] = useState(false);
 
   // Initialize game state from saved state or start fresh
   useEffect(() => {
@@ -45,6 +47,21 @@ const GameScreen = ({ wordList, gameState, onGameStateUpdate }) => {
     if (!currentWord) return;
     if (userSpelling.length < currentWord.word.length) {
       setUserSpelling(prev => prev + letter);
+    }
+  };
+
+  // Handle space input
+  const handleSpace = () => {
+    if (!currentWord) return;
+    if (userSpelling.length < currentWord.word.length) {
+      setUserSpelling(prev => prev + ' ');
+    }
+  };
+
+  // Handle delete input
+  const handleDelete = () => {
+    if (userSpelling.length > 0) {
+      setUserSpelling(prev => prev.slice(0, -1));
     }
   };
 
@@ -85,8 +102,21 @@ const GameScreen = ({ wordList, gameState, onGameStateUpdate }) => {
     });
 
     setScoreBreakdown(awarded);
-    setTotalScore(prev => prev + awarded.total);
+    setTotalScore(prev => {
+      const newScore = prev + awarded.total;
+      if (awarded.total > 0) {
+        setScoreUpdated(true);
+        setTimeout(() => setScoreUpdated(false), 300);
+      }
+      return newScore;
+    });
+
     setStreakCount(newStreak);
+    if (newStreak > streakCount) {
+      setStreakUpdated(true);
+      setTimeout(() => setStreakUpdated(false), 300);
+    }
+
     setShowScore(true);
     setShowFeedback(correct);
 
@@ -138,6 +168,22 @@ const GameScreen = ({ wordList, gameState, onGameStateUpdate }) => {
         <span className="mode-label">Mode:</span>
         <span className={`mode-value ${mode}`}>{mode.charAt(0).toUpperCase() + mode.slice(1)}</span>
       </div>
+
+      <div className="score-board">
+        <div className="score-container">
+          <div className="score-label">SCORE</div>
+          <div className={`score-value ${scoreUpdated ? 'updated' : ''}`}>
+            {totalScore.toLocaleString()}
+          </div>
+        </div>
+        
+        <div className="streak-container">
+          <div className="streak-label">STREAK</div>
+          <div className={`streak-value ${streakUpdated ? 'updated' : ''}`}>
+            x{streakCount}
+          </div>
+        </div>
+      </div>
       
       <WordDisplay
         word={currentWord}
@@ -148,6 +194,8 @@ const GameScreen = ({ wordList, gameState, onGameStateUpdate }) => {
       
       <SpellingInput
         onLetterInput={handleLetterInput}
+        onSpace={handleSpace}
+        onDelete={handleDelete}
         disabled={userSpelling.length >= currentWord.word.length}
       />
       
@@ -169,17 +217,12 @@ const GameScreen = ({ wordList, gameState, onGameStateUpdate }) => {
       />
       )}
       
-      <div className="score-container">
-        <span className="score-label">Total Score:</span>
-        <span className="score-value">{totalScore}</span>
-      </div>
-      
       <div className="button-container">
         <button 
           className="button mode-toggle"
           onClick={handleModeToggle}
         >
-          Switch to {mode === 'practice' ? 'Test' : 'Practice'} Mode
+          {mode === 'practice' ? 'Test Mode' : 'Practice Mode'}
         </button>
         
         <button

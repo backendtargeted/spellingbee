@@ -1,56 +1,72 @@
 .spelling-input {
-  margin: 20px 0;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 .letter-grid {
   display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  gap: 8px;
-  max-width: 800px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 .letter-button {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
   aspect-ratio: 1;
   border: none;
   border-radius: 8px;
-  font-size: 1.2em;
+  font-size: 1.5em;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 8px;
 }
 
 .letter-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .letter-button:disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
   transform: none;
 }
 
-.letter-text {
-  font-size: 1.2em;
+.control-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.space-button, .delete-button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
   font-weight: bold;
-  z-index: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.letter-sprite {
-  position: absolute;
-  bottom: 4px;
-  transition: transform 0.2s ease;
+.space-button {
+  background-color: #3498db;
+  color: white;
+  flex: 2;
 }
 
-.letter-button:hover .letter-sprite {
-  transform: scale(1.2);
+.delete-button {
+  background-color: #e74c3c;
+  color: white;
+  flex: 1;
+}
+
+.space-button:hover, .delete-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.space-button:disabled, .delete-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import './SpellingInput.css';
 
-const SpellingInput = ({ onLetterInput, disabled }) => {
+const SpellingInput = ({ onLetterInput, onSpace, onDelete, disabled }) => {
   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
   
   // Generate a unique color for each letter based on its position
@@ -35,6 +35,23 @@ const SpellingInput = ({ onLetterInput, disabled }) => {
             <span className="letter-text">{letter}</span>
           </button>
         ))}
+      </div>
+      
+      <div className="control-buttons">
+        <button 
+          className="space-button" 
+          onClick={onSpace}
+          disabled={disabled}
+        >
+          SPACE
+        </button>
+        <button 
+          className="delete-button" 
+          onClick={onDelete}
+          disabled={disabled}
+        >
+          DELETE
+        </button>
       </div>
     </div>
   );
