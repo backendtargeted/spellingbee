@@ -1,0 +1,47 @@
+.alphabet-helper {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.alphabet-helper h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.alphabet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.alphabet-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.alphabet-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.letter {
+  font-weight: bold;
+  color: #2c3e50;
+  font-size: 1.2em;
+}
+
+.pronunciation {
+  color: #7f8c8d;
+  font-size: 0.9em;
+  font-style: italic;
+}

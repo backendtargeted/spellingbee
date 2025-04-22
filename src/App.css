@@ -1,38 +1,72 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
   min-height: 100vh;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.game-container {
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: #f8f9fa;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 2.5em;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.mode-selector {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.mode-label {
+  font-size: 1.2em;
+  color: #3498db;
+}
+
+.mode-value {
+  background-color: #e74c3c;
   color: white;
+  padding: 5px 15px;
+  border-radius: 15px;
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+.listen-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1.1em;
+  margin: 20px auto;
+  transition: all 0.2s ease;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.listen-button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.listen-button img {
+  width: 20px;
+  height: 20px;
 }

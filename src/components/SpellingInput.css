@@ -1,0 +1,56 @@
+.spelling-input {
+  margin: 20px 0;
+}
+
+.letter-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 8px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.letter-button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+}
+
+.letter-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.letter-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.letter-text {
+  font-size: 1.2em;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.letter-sprite {
+  position: absolute;
+  bottom: 4px;
+  transition: transform 0.2s ease;
+}
+
+.letter-button:hover .letter-sprite {
+  transform: scale(1.2);
+}
